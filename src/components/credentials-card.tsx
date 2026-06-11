@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, type MouseEvent } from "react";
 import { ArcMotif } from "@/components/decor";
 
 const marks = [
@@ -8,14 +11,36 @@ const marks = [
 
 /**
  * Compact credentials card for the home hero — qualifications shown,
- * not explained. The fuller treatment lives on the About page.
+ * not explained. A soft sheen follows the cursor on hover (hover-capable
+ * devices only); the fuller treatment lives on the About page.
  */
 export function CredentialsCard({ className = "" }: { className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  function handleMove(e: MouseEvent<HTMLDivElement>) {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+  }
+
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl bg-ink p-8 shadow-soft sm:p-10 ${className}`}
+      ref={ref}
+      onMouseMove={handleMove}
+      className={`group relative overflow-hidden rounded-3xl bg-ink p-8 shadow-soft sm:p-10 ${className}`}
     >
       <ArcMotif className="pointer-events-none absolute -bottom-16 -right-12 h-64 w-64 text-accent/25" />
+      {/* Cursor-tracking sheen */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-refined group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(167, 199, 191, 0.13), transparent 60%)",
+        }}
+      />
+
       <div className="relative">
         <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-accent-soft/80">
           Credentials

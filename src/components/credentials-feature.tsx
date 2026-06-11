@@ -7,13 +7,9 @@ import { Icon } from "@/components/icons";
 /**
  * About-page accreditations feature.
  *
- * ICAEW and ACCA show the official supplied logos on white plaques (brand
- * guidelines require adequate contrast / clear space). CIOT is a typographic
- * placeholder until the official asset is supplied; "Audit registered" is a
- * regulatory status shown with a seal mark.
- *
- * To add the CIOT logo later: drop the file in /public/logos and switch its
- * `kind` to "image" below.
+ * ICAEW, ACCA and CIOT show the official supplied logos on white plaques
+ * (brand guidelines require adequate contrast / clear space). "Audit
+ * registered" is a regulatory status shown with a seal mark.
  */
 type Item =
   | { kind: "image"; src: string; w: number; h: number; alt: string; name: string; note: string }
@@ -40,8 +36,11 @@ const items: Item[] = [
     note: "Qualified accountants",
   },
   {
-    kind: "text",
-    text: "CIOT",
+    kind: "image",
+    src: "/logos/ciot.png",
+    w: 180,
+    h: 180,
+    alt: "CIOT",
     name: "CIOT tax expertise",
     note: "Chartered tax advisers",
   },
