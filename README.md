@@ -69,11 +69,12 @@ src/
 │  └─ globals.css         # Tokens, focus states, reveal utilities
 ├─ components/            # Header, footer, buttons, form, sections, icons…
 └─ lib/
-   ├─ site.ts             # Firm details, contact info, navigation
-   └─ services.ts         # The service catalogue (single source of truth)
+   ├─ site-content.ts     # ✏️  ALL editable text, links, contact details & map
+   ├─ site.ts             # Re-export shim — do not edit
+   └─ services.ts         # Re-export shim — do not edit
 ```
 
-**Most content lives in `src/lib/`** — update `site.ts` and `services.ts` to change copy, contact details or the service list everywhere at once.
+**All editable content lives in `src/lib/site-content.ts`.** Change wording, links, contact details, opening hours and the Google Maps location there — no other files needed. See **[WEBSITE_EDIT_GUIDE.md](WEBSITE_EDIT_GUIDE.md)** for a plain-English walkthrough.
 
 ---
 
@@ -85,7 +86,7 @@ src/
 2. Go to **[vercel.com](https://vercel.com/new)** → **Import Project** → select the repo.
 3. Framework preset auto-detects **Next.js** — no configuration needed. Click **Deploy**.
 4. Add your custom domain under **Project → Settings → Domains** (e.g. `rsgllp.co.uk`) and point DNS as instructed.
-5. Set the production URL in `src/lib/site.ts` (`site.url`) so canonical URLs, the sitemap and Open Graph tags resolve correctly.
+5. Set the production URL in `src/lib/site-content.ts` (`seo.url`) so canonical URLs, the sitemap and Open Graph tags resolve correctly.
 
 The contact API route (`/api/contact`) runs as a serverless function on Vercel out of the box.
 
@@ -116,7 +117,7 @@ Copy `.env.example` to `.env.local`. **Nothing is required to run locally** — 
 
 | Item | Where | Notes |
 |------|-------|-------|
-| **Production domain** | `src/lib/site.ts` → `site.url` | Currently `https://www.rsgllp.co.uk`. Used for canonical URLs, sitemap, OG. |
+| **Production domain** | `src/lib/site-content.ts` → `seo.url` | Currently `https://www.rsgllp.co.uk`. Used for canonical URLs, sitemap, OG. |
 | **Logo** | `src/components/logo.tsx`, `src/app/icon.svg` | Typographic wordmark + favicon. Swap for the real logo asset / a `.ico` for legacy browsers if needed. |
 | **Official accreditation logos** | `src/components/credentials-feature.tsx` | ICAEW / ACCA / CIOT shown as premium typographic marks with logo **slots**. Drop the licensed logos in only with each body's permission, per their brand guidelines (resource links in `src/lib/site.ts`). |
 | **Audit registration** | `src/lib/site.ts` (`accreditations`) | Confirm the firm holds current ICAEW statutory audit registration before publishing this claim. |

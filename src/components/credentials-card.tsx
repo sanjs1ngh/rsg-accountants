@@ -2,12 +2,9 @@
 
 import { useRef, type MouseEvent } from "react";
 import { ArcMotif } from "@/components/decor";
+import { content } from "@/lib/site-content";
 
-const marks = [
-  { mark: "ICAEW", label: "Chartered" },
-  { mark: "ACCA", label: "Qualified" },
-  { mark: "CIOT", label: "Tax" },
-];
+const { eyebrow, marks, tagline, footnote } = content.credentialsCard;
 
 /**
  * Compact credentials card for the home hero — qualifications shown,
@@ -43,7 +40,7 @@ export function CredentialsCard({ className = "" }: { className?: string }) {
 
       <div className="relative">
         <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-accent-soft/80">
-          Credentials
+          {eyebrow}
         </span>
 
         <div className="mt-7 grid grid-cols-3 divide-x divide-paper/10">
@@ -60,11 +57,9 @@ export function CredentialsCard({ className = "" }: { className?: string }) {
         </div>
 
         <p className="mt-8 border-t border-paper/10 pt-6 font-display text-lg text-paper/85">
-          Chartered Accountants &amp; Business Advisers
+          {tagline}
         </p>
-        <p className="mt-1.5 text-sm text-paper/45">
-          Audit registered · Hayes, West London
-        </p>
+        <p className="mt-1.5 text-sm text-paper/45">{footnote}</p>
       </div>
     </div>
   );

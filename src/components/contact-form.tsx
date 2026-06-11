@@ -4,16 +4,10 @@ import { useState, type FormEvent } from "react";
 import { ArrowRight, CheckIcon } from "@/components/icons";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
+import { content } from "@/lib/site-content";
 
-const businessTypes = [
-  "Sole trader",
-  "Limited company",
-  "Partnership / LLP",
-  "Landlord / property",
-  "Startup",
-  "Charity / not-for-profit",
-  "Other",
-];
+const fc = content.contactPage.form;
+const businessTypes = fc.businessTypes;
 
 type Status = "idle" | "submitting" | "success" | "error";
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
@@ -81,11 +75,10 @@ export function ContactForm() {
           <CheckIcon className="h-6 w-6" />
         </span>
         <h3 className="mt-5 font-display text-xl font-medium text-ink">
-          Thank you. Your message is on its way.
+          {fc.successHeading}
         </h3>
         <p className="mt-2 text-pretty text-sm leading-relaxed text-slate">
-          We aim to respond within one working day. If your enquiry is urgent,
-          please call us on{" "}
+          {fc.successBody}{" "}
           <a
             href={`tel:${site.contact.phoneHref}`}
             className="font-medium text-accent"
@@ -99,7 +92,7 @@ export function ContactForm() {
           onClick={() => setStatus("idle")}
           className="mt-6 text-sm font-medium text-accent underline-offset-4 hover:underline"
         >
-          Send another message
+          {fc.sendAnother}
         </button>
       </div>
     );
@@ -162,7 +155,7 @@ export function ContactForm() {
             {service.title}
           </option>
         ))}
-        <option value="Not sure yet">Not sure yet</option>
+        <option value={fc.notSureOption}>{fc.notSureOption}</option>
       </SelectField>
 
       <div>
@@ -174,7 +167,7 @@ export function ContactForm() {
           required
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "message-error" : undefined}
-          placeholder="Tell us a little about your business and how we can help…"
+          placeholder={fc.messagePlaceholder}
           className={`${fieldBase} resize-y ${
             errors.message ? "border-red-400" : "border-line"
           }`}
@@ -187,8 +180,7 @@ export function ContactForm() {
           role="alert"
           className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700"
         >
-          Something went wrong sending your message. Please try again, or email
-          us directly at{" "}
+          {fc.errorMessage}{" "}
           <a href={`mailto:${site.contact.email}`} className="font-medium underline">
             {site.contact.email}
           </a>
@@ -202,14 +194,12 @@ export function ContactForm() {
           disabled={status === "submitting"}
           className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-paper-light shadow-card transition-all duration-300 ease-refined hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-card-hover disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {status === "submitting" ? "Sending…" : "Send message"}
+          {status === "submitting" ? fc.submittingLabel : fc.submitLabel}
           {status !== "submitting" && (
             <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-refined group-hover:translate-x-1" />
           )}
         </button>
-        <p className="text-xs leading-relaxed text-slate-light">
-          By submitting, you agree we may contact you about your enquiry.
-        </p>
+        <p className="text-xs leading-relaxed text-slate-light">{fc.consent}</p>
       </div>
     </form>
   );

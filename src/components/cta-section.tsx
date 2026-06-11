@@ -4,10 +4,11 @@ import { ButtonLink } from "@/components/button";
 import { ArcMotif } from "@/components/decor";
 import { PhoneIcon, MailIcon } from "@/components/icons";
 import { site } from "@/lib/site";
+import { content } from "@/lib/site-content";
 
 export function CtaSection({
-  title = "Let’s talk.",
-  intro = "Book a free consultation. We’ll tell you how we can help, and what it costs.",
+  title = content.ctaBand.title,
+  intro = content.ctaBand.intro,
 }: {
   title?: string;
   intro?: string;
@@ -22,7 +23,7 @@ export function CtaSection({
 
             <div className="relative mx-auto max-w-2xl">
               <span className="eyebrow justify-center text-accent-soft/90">
-                Free consultation
+                {content.ctaBand.eyebrow}
               </span>
               <h2 className="mt-5 font-display text-3xl font-medium leading-tight text-paper-light sm:text-4xl">
                 {title}
@@ -32,8 +33,12 @@ export function CtaSection({
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <ButtonLink href="/contact" variant="light" withArrow>
-                  Book a free consultation
+                <ButtonLink
+                  href={content.ctas.bookConsultation.href}
+                  variant="light"
+                  withArrow
+                >
+                  {content.ctas.bookConsultation.label}
                 </ButtonLink>
                 <ButtonLink
                   href={`tel:${site.contact.phoneHref}`}
@@ -41,7 +46,7 @@ export function CtaSection({
                   className="text-paper hover:text-accent-soft"
                 >
                   <PhoneIcon className="h-4 w-4" />
-                  Call us
+                  {content.ctas.callUs.label}
                 </ButtonLink>
               </div>
 

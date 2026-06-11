@@ -7,6 +7,9 @@ import { CtaSection } from "@/components/cta-section";
 import { OfficeMap } from "@/components/office-map";
 import { PinIcon } from "@/components/icons";
 import { site, mapsSearchUrl } from "@/lib/site";
+import { content } from "@/lib/site-content";
+
+const { header, practice, location } = content.aboutPage;
 
 export const metadata: Metadata = {
   title: "About",
@@ -19,9 +22,9 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="About"
-        title="Built for West London business."
-        intro="Over 20 years of local accountancy heritage, brought together as one chartered firm."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        intro={header.intro}
       />
 
       {/* Lead trust signal: accreditations */}
@@ -32,27 +35,19 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <Reveal>
-              <span className="eyebrow">Our practice</span>
+              <span className="eyebrow">{practice.eyebrow}</span>
             </Reveal>
             <div className="max-w-2xl">
               <Reveal>
                 <p className="font-display text-2xl font-medium leading-snug text-ink sm:text-[1.9rem]">
-                  Rooted in a practice serving West London businesses since 2002,
-                  RSG brings the standards of a chartered firm to the businesses
-                  on its doorstep.
+                  {practice.statement}
                 </p>
               </Reveal>
               <Reveal delay={80}>
                 <div className="mt-7 space-y-4 text-pretty text-base leading-relaxed text-slate">
-                  <p>
-                    We work with sole traders, growing companies and established
-                    businesses across the area. Compliance is handled properly.
-                    Advice is clear and direct.
-                  </p>
-                  <p>
-                    Behind the work is a team of qualified accountants, tax
-                    advisers and auditors.
-                  </p>
+                  {practice.paragraphs.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
                 </div>
               </Reveal>
             </div>
@@ -66,13 +61,12 @@ export default function AboutPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
               <div>
-                <span className="eyebrow">Find us</span>
+                <span className="eyebrow">{location.eyebrow}</span>
                 <h2 className="mt-5 font-display text-3xl font-medium leading-tight text-ink sm:text-[2.5rem]">
-                  Rooted in Hayes.
+                  {location.heading}
                 </h2>
                 <p className="mt-5 text-pretty text-base leading-relaxed text-slate">
-                  In person across West London, and set up to work with you
-                  wherever you are.
+                  {location.body}
                 </p>
                 <a
                   href={mapsSearchUrl}

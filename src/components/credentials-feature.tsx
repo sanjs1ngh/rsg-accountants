@@ -3,55 +3,17 @@ import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { GridMotif } from "@/components/decor";
 import { Icon } from "@/components/icons";
+import { content, type AccreditationItem } from "@/lib/site-content";
 
 /**
- * About-page accreditations feature.
+ * About-page accreditations feature. Wording and logos are set in
+ * src/lib/site-content.ts (accreditations).
  *
  * ICAEW, ACCA and CIOT show the official supplied logos on white plaques
  * (brand guidelines require adequate contrast / clear space). "Audit
  * registered" is a regulatory status shown with a seal mark.
  */
-type Item =
-  | { kind: "image"; src: string; w: number; h: number; alt: string; name: string; note: string }
-  | { kind: "text"; text: string; name: string; note: string }
-  | { kind: "seal"; name: string; note: string };
-
-const items: Item[] = [
-  {
-    kind: "image",
-    src: "/logos/icaew.svg",
-    w: 149,
-    h: 245,
-    alt: "ICAEW",
-    name: "ICAEW Chartered",
-    note: "Chartered accountants",
-  },
-  {
-    kind: "image",
-    src: "/logos/acca.png",
-    w: 2000,
-    h: 2000,
-    alt: "ACCA",
-    name: "ACCA qualified",
-    note: "Qualified accountants",
-  },
-  {
-    kind: "image",
-    src: "/logos/ciot.png",
-    w: 180,
-    h: 180,
-    alt: "CIOT",
-    name: "CIOT tax expertise",
-    note: "Chartered tax advisers",
-  },
-  {
-    kind: "seal",
-    name: "Audit registered",
-    note: "Statutory audit",
-  },
-];
-
-function Plaque({ item }: { item: Item }) {
+function Plaque({ item }: { item: AccreditationItem }) {
   return (
     <div className="flex h-20 w-full items-center justify-center rounded-xl bg-white px-5">
       {item.kind === "image" ? (
@@ -80,22 +42,24 @@ export function CredentialsFeature() {
       <Container className="relative">
         <div className="max-w-2xl">
           <Reveal>
-            <span className="eyebrow text-accent-soft/90">Accreditations</span>
+            <span className="eyebrow text-accent-soft/90">
+              {content.accreditations.eyebrow}
+            </span>
           </Reveal>
           <Reveal delay={60}>
             <h2 className="mt-5 font-display text-3xl font-medium leading-tight text-paper-light sm:text-[2.5rem]">
-              Qualified, regulated, accountable.
+              {content.accreditations.heading}
             </h2>
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-5 text-pretty text-base leading-relaxed text-paper/60">
-              Standards you can hold us to, across accountancy, tax and audit.
+              {content.accreditations.intro}
             </p>
           </Reveal>
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-paper/10 bg-paper/10 lg:grid-cols-4">
-          {items.map((item, i) => (
+          {content.accreditations.items.map((item, i) => (
             <Reveal key={item.name} delay={i * 80}>
               <div className="flex h-full flex-col bg-ink p-6 sm:p-7">
                 <Plaque item={item} />

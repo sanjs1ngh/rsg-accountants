@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { content } from "@/lib/site-content";
 
 /**
  * Typographic wordmark — a small geometric monogram tile + the firm name.
@@ -36,14 +37,14 @@ export function Logo({
             isLight ? "text-paper-light" : "text-ink"
           }`}
         >
-          RSG Accountants
+          {content.firm.name}
         </span>
         <span
           className={`mt-1 text-[10px] font-semibold uppercase tracking-eyebrow ${
             isLight ? "text-paper/70" : "text-slate"
           }`}
         >
-          Chartered &amp; Advisory
+          {content.firm.logoSubtitle}
         </span>
       </span>
     </Link>

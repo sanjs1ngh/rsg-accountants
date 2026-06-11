@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { MailIcon, PhoneIcon, PinIcon, ClockIcon } from "@/components/icons";
 import { site, nav, mapsSearchUrl } from "@/lib/site";
+import { content } from "@/lib/site-content";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -24,7 +25,7 @@ export function SiteFooter() {
           {/* Navigation */}
           <nav aria-label="Footer">
             <h2 className="text-xs font-semibold uppercase tracking-eyebrow text-paper/45">
-              Explore
+              {content.footer.exploreHeading}
             </h2>
             <ul className="mt-5 space-y-3 text-sm">
               {nav.map((item) => (
@@ -42,7 +43,7 @@ export function SiteFooter() {
                   href="/contact"
                   className="text-paper/75 transition-colors hover:text-paper"
                 >
-                  Request a quote
+                  {content.footer.requestQuoteLabel}
                 </Link>
               </li>
             </ul>
@@ -51,7 +52,7 @@ export function SiteFooter() {
           {/* Contact */}
           <div>
             <h2 className="text-xs font-semibold uppercase tracking-eyebrow text-paper/45">
-              Get in touch
+              {content.footer.getInTouchHeading}
             </h2>
             <ul className="mt-5 space-y-4 text-sm">
               <li className="flex gap-3">
@@ -113,12 +114,7 @@ export function SiteFooter() {
             </p>
           </div>
           <p className="mt-4 text-xs leading-relaxed text-paper/40">
-            {site.legalName} is a firm of Chartered Accountants. Professional body
-            references are provided for information.{" "}
-            <span className="text-paper/30">
-              [Placeholder: confirm ICAEW firm registration details, regulatory
-              status and any required regulator wording before going live.]
-            </span>
+            {content.footer.regulatoryNote}
           </p>
         </div>
       </div>

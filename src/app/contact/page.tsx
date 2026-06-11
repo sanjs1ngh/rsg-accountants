@@ -11,6 +11,7 @@ import {
   ClockIcon,
 } from "@/components/icons";
 import { site, mapsSearchUrl } from "@/lib/site";
+import { content } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -23,9 +24,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Let’s start a conversation."
-        intro="Tell us about your business and what you need. We reply within one working day, and the first consultation is free."
+        eyebrow={content.contactPage.header.eyebrow}
+        title={content.contactPage.header.title}
+        intro={content.contactPage.header.intro}
       />
 
       <section className="bg-paper py-16 sm:py-24">
@@ -35,11 +36,10 @@ export default function ContactPage() {
             <Reveal>
               <div className="rounded-3xl border border-line bg-paper-light p-7 shadow-card sm:p-9">
                 <h2 className="font-display text-2xl font-medium text-ink">
-                  Send us a message
+                  {content.contactPage.form.heading}
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate">
-                  Fields marked required help us point your enquiry to the right
-                  person.
+                  {content.contactPage.form.intro}
                 </p>
                 <div className="mt-7">
                   <ContactForm />
@@ -52,7 +52,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-6">
                 <div className="rounded-3xl border border-line bg-paper-light p-7 sm:p-9">
                   <h2 className="font-display text-xl font-medium text-ink">
-                    Speak to us directly
+                    {content.contactPage.detailsHeading}
                   </h2>
                   <ul className="mt-6 space-y-5">
                     <ContactRow

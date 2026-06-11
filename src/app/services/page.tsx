@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/page-header";
 import { CtaSection } from "@/components/cta-section";
 import { Icon } from "@/components/icons";
 import { services } from "@/lib/services";
+import { content } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -18,16 +19,20 @@ export default function ServicesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Services"
-        title="What we do."
-        intro="Compliance handled properly, and advice for what comes next."
+        eyebrow={content.servicesPage.eyebrow}
+        title={content.servicesPage.title}
+        intro={content.servicesPage.intro}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/contact" variant="primary" withArrow>
-            Book a free consultation
+          <ButtonLink
+            href={content.ctas.bookConsultation.href}
+            variant="primary"
+            withArrow
+          >
+            {content.ctas.bookConsultation.label}
           </ButtonLink>
-          <ButtonLink href="/contact" variant="secondary">
-            Request a quote
+          <ButtonLink href={content.ctas.requestQuote.href} variant="secondary">
+            {content.ctas.requestQuote.label}
           </ButtonLink>
         </div>
       </PageHeader>
@@ -62,8 +67,8 @@ export default function ServicesPage() {
       </section>
 
       <CtaSection
-        title="Not sure what you need?"
-        intro="Tell us about your business and we’ll recommend a sensible place to start."
+        title={content.servicesPage.closingTitle}
+        intro={content.servicesPage.closingIntro}
       />
     </>
   );
