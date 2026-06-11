@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 76px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset in-page anchors so they clear the fixed header */
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Refined, visible focus state for keyboard users only */
+  :focus-visible {
+    outline: 2px solid theme("colors.accent.DEFAULT");
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  ::selection {
+    background: theme("colors.accent.DEFAULT");
+    color: #fff;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-ink;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8;
+  }
+
+  /* Small uppercase label that sits above headings */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-eyebrow text-accent;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-7 bg-accent/60;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-1.5 font-medium text-accent;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 ease-refined;
+  }
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+@layer utilities {
+  /* Scroll-reveal: hidden by default, revealed when JS adds .is-visible */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Edge-faded ticker */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 9%,
+      #000 91%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 9%,
+      #000 91%,
+      transparent
+    );
+  }
+  .animate-marquee {
+    animation: marquee 46s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Honour user motion preferences everywhere */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  /* Static, centred ticker instead of scrolling */
+  .animate-marquee {
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .marquee-dup {
+    display: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
