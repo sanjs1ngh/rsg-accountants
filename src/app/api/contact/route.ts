@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { site } from "@/lib/site";
 
 /**
  * Contact endpoint.
@@ -10,7 +9,7 @@ import { site } from "@/lib/site";
  *
  * Environment variables (see .env.example):
  *   RESEND_API_KEY      Resend API key. If unset, the route logs only.
- *   CONTACT_TO_EMAIL    Recipient inbox. Defaults to the firm email.
+ *   CONTACT_TO_EMAIL    Recipient inbox. Defaults to admin@rsgllp.co.uk.
  *   CONTACT_FROM_EMAIL  Verified sender. Must be on a domain verified in Resend.
  */
 
@@ -24,7 +23,7 @@ type ContactPayload = {
   company_website?: string; // honeypot
 };
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || site.contact.email;
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "admin@rsgllp.co.uk";
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL || "RSG Accountants <onboarding@resend.dev>";
 

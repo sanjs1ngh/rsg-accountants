@@ -61,21 +61,19 @@ const hours = [
 ];
 
 /* ── Google Maps ────────────────────────────────────────────────────────────
- *  The map currently points to: Machine Works House, 5 Pressing Lane, Hayes,
+ *  Points to: RSG Accountants, Machine Works House, 5 Pressing Lane, Hayes,
  *  UB3 1FD.
  *
- *  If the pin is slightly off, fix it like this:
- *   1. Go to Google Maps and search your exact address.
- *   2. For the MAP: click Share → "Embed a map" → Copy HTML → from that HTML
- *      copy ONLY the link inside src="..." and paste it as googleMapsEmbedUrl.
- *   3. For the DIRECTIONS button: click Share → "Send a link" → Copy link, and
- *      paste it as googleMapsDirectionsUrl.
+ *  To change the location later:
+ *   • MAP: on Google Maps click Share → "Embed a map" → Copy HTML → copy ONLY
+ *     the link inside src="..." and paste it as googleMapsEmbedUrl.
+ *   • DIRECTIONS button: click Share → "Send a link" → Copy link, and paste it
+ *     as googleMapsDirectionsUrl.
  * ─────────────────────────────────────────────────────────────────────────── */
 const maps = {
   googleMapsEmbedUrl:
-    "https://www.google.com/maps?q=Machine%20Works%20House%2C%205%20Pressing%20Lane%2C%20Hayes%2C%20UB3%201FD&z=15&output=embed",
-  googleMapsDirectionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=Machine%20Works%20House%2C%205%20Pressing%20Lane%2C%20Hayes%2C%20UB3%201FD",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5055129036236!2d-0.42760682306246284!3d51.50394117181251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876729a97f64cdf%3A0xf9824516454bc1c0!2sRSG%20Accountants%20(formerly%20JS%20Gulati%20%26%20Co%20Accountants)!5e0!3m2!1sen!2suk!4v1783516512263!5m2!1sen!2suk",
+  googleMapsDirectionsUrl: "https://maps.app.goo.gl/ACjRFt5MwtGQELhg6",
 };
 
 /* ── Heritage line ──────────────────────────────────────────────────────── */
