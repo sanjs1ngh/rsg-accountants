@@ -38,7 +38,7 @@ const seo = {
 
 /* ── Contact details ────────────────────────────────────────────────────── */
 const contact = {
-  email: "info@rsgllp.co.uk",
+  email: "hello@rsgllp.co.uk",
   phone: "+44 20 8573 5329", // shown on the page
   phoneDisplay: "+44 20 8573 5329",
   phoneHref: "+442085735329", // for the "tap to call" link — digits only, no spaces
@@ -56,7 +56,7 @@ const address = {
 
 /* ── Opening hours ──────────────────────────────────────────────────────── */
 const hours = [
-  { day: "Monday to Friday", time: "9:00am to 5:30pm" },
+  { day: "Monday to Friday", time: "9:00am to 5:00pm" },
   { day: "Saturday & Sunday", time: "Closed" },
 ];
 
