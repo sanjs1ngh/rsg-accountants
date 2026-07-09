@@ -33,7 +33,7 @@ const seo = {
   // Your live web address. After you connect your own domain, change this to it.
   url: "https://www.rsgllp.co.uk",
   description:
-    "Chartered accountants and business advisers in Hayes, West London. Built on over 20 years of local accountancy heritage, working with sole traders, small businesses and limited companies.",
+    "Chartered Accountants and Business advisers in Hayes, West London. Built on over 20 years of local Accountancy heritage, working with sole traders, small businesses and limited companies.",
 };
 
 /* ── Contact details ────────────────────────────────────────────────────── */
